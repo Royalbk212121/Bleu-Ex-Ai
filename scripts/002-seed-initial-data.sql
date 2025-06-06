@@ -1,0 +1,112 @@
+-- Seed initial data for the legal database
+
+-- Insert US Jurisdictions
+INSERT INTO jurisdictions (name, code, country, type) VALUES
+('United States', 'US', 'United States', 'federal'),
+('Alabama', 'AL', 'United States', 'state'),
+('Alaska', 'AK', 'United States', 'state'),
+('Arizona', 'AZ', 'United States', 'state'),
+('Arkansas', 'AR', 'United States', 'state'),
+('California', 'CA', 'United States', 'state'),
+('Colorado', 'CO', 'United States', 'state'),
+('Connecticut', 'CT', 'United States', 'state'),
+('Delaware', 'DE', 'United States', 'state'),
+('Florida', 'FL', 'United States', 'state'),
+('Georgia', 'GA', 'United States', 'state'),
+('Hawaii', 'HI', 'United States', 'state'),
+('Idaho', 'ID', 'United States', 'state'),
+('Illinois', 'IL', 'United States', 'state'),
+('Indiana', 'IN', 'United States', 'state'),
+('Iowa', 'IA', 'United States', 'state'),
+('Kansas', 'KS', 'United States', 'state'),
+('Kentucky', 'KY', 'United States', 'state'),
+('Louisiana', 'LA', 'United States', 'state'),
+('Maine', 'ME', 'United States', 'state'),
+('Maryland', 'MD', 'United States', 'state'),
+('Massachusetts', 'MA', 'United States', 'state'),
+('Michigan', 'MI', 'United States', 'state'),
+('Minnesota', 'MN', 'United States', 'state'),
+('Mississippi', 'MS', 'United States', 'state'),
+('Missouri', 'MO', 'United States', 'state'),
+('Montana', 'MT', 'United States', 'state'),
+('Nebraska', 'NE', 'United States', 'state'),
+('Nevada', 'NV', 'United States', 'state'),
+('New Hampshire', 'NH', 'United States', 'state'),
+('New Jersey', 'NJ', 'United States', 'state'),
+('New Mexico', 'NM', 'United States', 'state'),
+('New York', 'NY', 'United States', 'state'),
+('North Carolina', 'NC', 'United States', 'state'),
+('North Dakota', 'ND', 'United States', 'state'),
+('Ohio', 'OH', 'United States', 'state'),
+('Oklahoma', 'OK', 'United States', 'state'),
+('Oregon', 'OR', 'United States', 'state'),
+('Pennsylvania', 'PA', 'United States', 'state'),
+('Rhode Island', 'RI', 'United States', 'state'),
+('South Carolina', 'SC', 'United States', 'state'),
+('South Dakota', 'SD', 'United States', 'state'),
+('Tennessee', 'TN', 'United States', 'state'),
+('Texas', 'TX', 'United States', 'state'),
+('Utah', 'UT', 'United States', 'state'),
+('Vermont', 'VT', 'United States', 'state'),
+('Virginia', 'VA', 'United States', 'state'),
+('Washington', 'WA', 'United States', 'state'),
+('West Virginia', 'WV', 'United States', 'state'),
+('Wisconsin', 'WI', 'United States', 'state'),
+('Wyoming', 'WY', 'United States', 'state'),
+('District of Columbia', 'DC', 'United States', 'federal_district')
+ON CONFLICT (code) DO NOTHING;
+
+-- Insert Practice Areas
+INSERT INTO practice_areas (name, code, description) VALUES
+('Constitutional Law', 'CONST', 'Issues relating to constitutional interpretation and rights'),
+('Criminal Law', 'CRIM', 'Criminal offenses, procedure, and defense'),
+('Civil Rights', 'CIVIL', 'Civil liberties and discrimination law'),
+('Contract Law', 'CONTRACT', 'Formation, performance, and breach of contracts'),
+('Tort Law', 'TORT', 'Personal injury and civil wrongs'),
+('Property Law', 'PROPERTY', 'Real estate, intellectual property, and ownership rights'),
+('Family Law', 'FAMILY', 'Marriage, divorce, custody, and domestic relations'),
+('Employment Law', 'EMPLOY', 'Workplace rights, discrimination, and labor relations'),
+('Corporate Law', 'CORP', 'Business formation, governance, and transactions'),
+('Securities Law', 'SEC', 'Investment and financial regulations'),
+('Tax Law', 'TAX', 'Federal and state taxation'),
+('Immigration Law', 'IMMIG', 'Citizenship, visas, and deportation'),
+('Environmental Law', 'ENV', 'Environmental protection and regulation'),
+('Health Law', 'HEALTH', 'Healthcare regulation and medical law'),
+('Intellectual Property', 'IP', 'Patents, trademarks, copyrights, and trade secrets'),
+('Bankruptcy Law', 'BANK', 'Debt relief and insolvency proceedings'),
+('Administrative Law', 'ADMIN', 'Government agency actions and regulations'),
+('Evidence Law', 'EVID', 'Rules of evidence and procedure'),
+('Appellate Practice', 'APP', 'Appeals and appellate procedure'),
+('Litigation', 'LIT', 'Civil and criminal litigation practice')
+ON CONFLICT (code) DO NOTHING;
+
+-- Insert Document Types
+INSERT INTO document_types (name, code, description, category) VALUES
+('Supreme Court Opinion', 'SCOTUS', 'US Supreme Court decisions', 'case_law'),
+('Federal Court Opinion', 'FED_COURT', 'Federal district and appellate court decisions', 'case_law'),
+('State Court Opinion', 'STATE_COURT', 'State court decisions', 'case_law'),
+('Federal Statute', 'FED_STAT', 'Federal laws and statutes', 'statute'),
+('State Statute', 'STATE_STAT', 'State laws and statutes', 'statute'),
+('Federal Regulation', 'FED_REG', 'Federal regulations and rules', 'regulation'),
+('State Regulation', 'STATE_REG', 'State regulations and rules', 'regulation'),
+('Legal Brief', 'BRIEF', 'Court briefs and memoranda', 'brief'),
+('Contract', 'CONTRACT', 'Legal contracts and agreements', 'contract'),
+('Legal Memo', 'MEMO', 'Legal memoranda and analysis', 'memo'),
+('Pleading', 'PLEADING', 'Court pleadings and motions', 'pleading'),
+('Discovery Document', 'DISCOVERY', 'Discovery requests and responses', 'discovery'),
+('Settlement Agreement', 'SETTLEMENT', 'Settlement and resolution agreements', 'settlement'),
+('Legal Opinion', 'OPINION', 'Legal opinions and advice letters', 'opinion'),
+('Regulatory Filing', 'REG_FILING', 'Regulatory submissions and filings', 'filing')
+ON CONFLICT (code) DO NOTHING;
+
+-- Insert Legal Sources
+INSERT INTO legal_sources (name, code, description, base_url, access_type, supported_jurisdictions, supported_document_types) VALUES
+('Google Scholar', 'GOOGLE_SCHOLAR', 'Free access to case law and legal documents', 'https://scholar.google.com', 'free', ARRAY[]::UUID[], ARRAY[]::UUID[]),
+('Justia', 'JUSTIA', 'Free legal information and case law', 'https://law.justia.com', 'free', ARRAY[]::UUID[], ARRAY[]::UUID[]),
+('CourtListener', 'COURT_LISTENER', 'Free legal research and case law database', 'https://www.courtlistener.com', 'free', ARRAY[]::UUID[], ARRAY[]::UUID[]),
+('Legal Information Institute', 'LII', 'Cornell Law School legal information', 'https://www.law.cornell.edu', 'free', ARRAY[]::UUID[], ARRAY[]::UUID[]),
+('FindLaw', 'FINDLAW', 'Legal information and case law', 'https://caselaw.findlaw.com', 'free', ARRAY[]::UUID[], ARRAY[]::UUID[]),
+('OpenJurist', 'OPENJURIST', 'Open access to federal court opinions', 'https://openjurist.org', 'free', ARRAY[]::UUID[], ARRAY[]::UUID[]),
+('Casetext', 'CASETEXT', 'Legal research platform', 'https://casetext.com', 'subscription', ARRAY[]::UUID[], ARRAY[]::UUID[]),
+('US Courts', 'USCOURTS', 'Federal court system information', 'https://www.uscourts.gov', 'free', ARRAY[]::UUID[], ARRAY[]::UUID[])
+ON CONFLICT (code) DO NOTHING;
